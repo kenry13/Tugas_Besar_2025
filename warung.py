@@ -83,36 +83,41 @@ def edit_barang(barang):
     if not barang:
         print("Tidak ada barang untuk diubah.")
         return
-    
-    nama_barang = input("\nMasukan nama barang yang ingin di ubah: ")
+
+    nama_barang = input("\nMasukan nama barang yang ingin diubah: ")
     found = False
-    
+
     for b in barang:
-        if b["nama_barang"].lower() ==nama_barang.lower():
+        if b["nama_barang"].lower() == nama_barang.lower():
             found = True
-            print(f"\nBarang ditemukan: {b['nama_barang']}. - stok: {b['stok']}, harga: Rp. {b['harga']}")
-        
-        try:
-            new_stok = int(input("Masukkan stok baru (atau tekan Enter untuk tidak mengubah): ") or b['stok'])
-            new_harga = int(input("Masukkan harga baru (atau tekan Enter untuk tidak mengubah): Rp. ") or b['harga'])
-            
-            print("\nPerubahan:")    
-            print(f"Stok: {b['stok']} -> {new_stok}")
-            print(f"Harga: Rp. {b['harga']:,} -> Rp. {new_harga:,}".replace(',', '.'))
-            konfirmasi = input("Apakah Anda yakin ingin menyimpan perubahan ini? (Y/N): ").lower()
-            
-            if konfirmasi == "y":
-                b["stok"] = new_stok
-                b["harga"] = new_harga
-                simpan_data_barang(barang)
-                print("Perubahan berhasil disimpan!")
-            else:
-                print("Perubahan dibatalkan")
-        except ValueError:
-            print("Input tidak valid. Pastikan stok dan harga berupa angka")
-            
+            print(f"\nBarang ditemukan: {b['nama_barang']} - Stok: {b['stok']}, Harga: Rp. {b['harga']:,}".replace(',', '.'))
+
+            try:
+                new_stok = input("Masukkan stok baru (atau tekan Enter untuk tidak mengubah): ").strip()
+                new_stok = int(new_stok) if new_stok else int(b['stok'])
+
+                new_harga = input("Masukkan harga baru (atau tekan Enter untuk tidak mengubah): ").strip()
+                new_harga = int(new_harga) if new_harga else int(b['harga'])
+
+                print("\nPerubahan:")
+                print(f"Stok: {b['stok']} -> {new_stok}")
+                print(f"Harga: Rp. {b['harga']:,} -> Rp. {new_harga:,}".replace(',', '.'))
+
+                konfirmasi = input("Apakah Anda yakin ingin menyimpan perubahan ini? (Y/N): ").strip().lower()
+                if konfirmasi == 'y':
+                    b["stok"] = new_stok
+                    b["harga"] = new_harga
+                    simpan_data_barang(barang)
+                    print("Perubahan berhasil disimpan!")
+                else:
+                    print("Perubahan dibatalkan.")
+            except ValueError:
+                print("Input tidak valid. Pastikan stok dan harga berupa angka.")
+            break 
+
     if not found:
         print("Barang dengan nama tersebut tidak ditemukan.")
+
                     
         
 # fungsi untuk menghapus barang
@@ -206,13 +211,13 @@ def tampilkan_transaksi(transaksi):
 
 # fungsi untuk menghapus transaksi    
 def hapus_data(transaksi):
-    tambah_transaksi(transaksi)
-    
+    tampilkan_transaksi(transaksi)
+        
     if not transaksi:
         print("Tidak ada transaksi untuk dihapus.")
         return
 
-    nama_barang = input("Masukkan transaksi barang yang ingin dihapus: ")
+    nama_barang = input("\nMasukkan transaksi barang yang ingin dihapus: ")
     found = False
 
     for t in transaksi:

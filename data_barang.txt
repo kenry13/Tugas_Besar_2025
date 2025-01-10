@@ -1,3 +1,11 @@
-Kerupuk,20,2000
-Chiki Taro,12,1000
+Kerupuk,15,2000
+Chiki Taro,20,1000
 Padimas,20,500
+Roti Coklat,6,2000
+Roti Keju,10,2000
+Teh Gelas,20,1000
+Teh Pucuk,10,3500
+Kopi Hitam,12,2000
+Kopi Hari Baik,12,2000
+Energen,5,2500
+Kopi Luwak,10,2000

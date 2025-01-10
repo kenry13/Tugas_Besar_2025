@@ -1,2 +1,8 @@
-Chiki Taro,3,1000,3000
+Kopi Hari Baik,8,2000,16000
+
+Energen,5,2500,12500
+
+Kopi Hitam,5,2000,10000
+
+Kerupuk,5,2000,10000
 
